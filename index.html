@@ -25,7 +25,28 @@
     //documentオブジェクトidを使ってエレメントをgetするというメソッドで取得した。取得したものもオブジェクトになる。elementオブジェクトということになる。
     //innerHTMLはプロパティであってメソッドではない。= は変数の使い方と同じ使い方で代入するという意味。
     //動きはメソッド。見た目はプロパティのような意味。
-    document.getElementById('timer').innerHTML = '00000';
+    //ゼロを追加するという関数を定義する
+    var  addZero= function(value){
+      if (value < 10){              
+      value = '0'+ value;
+      }
+
+      return value;      
+    }
+    document.getElementById('start_stop').addEventListener('click',
+    function(){      
+      var now = new Date();
+      var seconds = now.getSeconds(); 
+      seconds = addZero(seconds);
+      
+      var minutes = now.getMinutes();
+      minutes = addZero(minutes);
+
+      var hours = now.getHours(); 
+      hours = addZero(hours);
+
+      document.getElementById('timer').innerHTML = hours + ':' + minutes + ':'+ seconds;
+    });
   </script>
 </body>
 </html>
