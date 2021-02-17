@@ -23,11 +23,28 @@
   </div>
   <script>
     var start;
+    var timer_id;
+    
     document.getElementById('start_stop').addEventListener('click', function(){
-      start = new Date();
+      if (this.innerHTML === 'START'){
+        start = new Date();
       
-      setInterval(goTimer, 10);
+        timer_id = setInterval(goTimer, 10);
+    
+        //STOPボタンにする
+        this.innerHTML = 'STOP' // this = document.getElementById('start_stop')
+        this.classList.remove('btn-primary');
+        this.classList.add('btn-danger');
+      }else{
+        clearInterval(timer_id);
+        //STARTボタンに戻す
+        this.innerHTML= 'START';
+        this.classList.remove('btn-danger');
+        this.classList.add('btn-primary');
+      }
+
     });
+
     
     var addZero = function(value){
       if (value <10){
